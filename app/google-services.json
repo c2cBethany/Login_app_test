@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "371864853440",
+    "project_id": "graceful-design-378217",
+    "storage_bucket": "graceful-design-378217.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:371864853440:android:1df39357f03c38998c4625",
+        "android_client_info": {
+          "package_name": "com.example.login2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "371864853440-1cusegdgpv0pfegdq7gbsbggq41n82ba.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4yRIfmis8DPDxo93SNzuvKTAxksy46kc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "371864853440-1cusegdgpv0pfegdq7gbsbggq41n82ba.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
