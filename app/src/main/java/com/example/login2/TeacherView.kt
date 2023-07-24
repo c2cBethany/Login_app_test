@@ -87,7 +87,7 @@ class TeacherView : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_profile, R.id.nav_post, R.id.nav_forum
+                R.id.nav_profile, R.id.nav_post, R.id.nav_forum, R.id.nav_home
             ), drawerLayout
         )
 
@@ -115,10 +115,4 @@ class TeacherView : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
-
-    fun startHome(item: MenuItem) {
-        val intent = Intent(this, HomeActivity::class.java)
-        startActivity(intent)
-    }
-
 }

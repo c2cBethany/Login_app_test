@@ -87,7 +87,7 @@ class StudentView : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_profile2, R.id.nav_forum2
+                R.id.nav_profile2, R.id.nav_forum2, R.id.nav_home2
             ), drawerLayout
         )
 
@@ -113,11 +113,6 @@ class StudentView : AppCompatActivity() {
         val intent = Intent(this, LogIn::class.java)
         startActivity(intent)
         finish()
-    }
-
-    fun startHome2(item: MenuItem) {
-        val intent = Intent(this, HomeActivity::class.java)
-        startActivity(intent)
     }
 
 }
