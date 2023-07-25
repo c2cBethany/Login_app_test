@@ -7,9 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.login2.ImagesAdapter
 import com.example.login2.databinding.FragmentHomeBinding
 import com.google.firebase.firestore.FirebaseFirestore
+import java.util.Collections
 
 class HomeFragment : Fragment() {
 
@@ -43,7 +45,7 @@ class HomeFragment : Fragment() {
         firebaseFirestore.collection("images")
             .get().addOnSuccessListener {
                 for(i in it){
-                    mList.add(i.data["pic"].toString())
+                    mList.add((i.data["pic"].toString()) + (i.data["caption"].toString()))
                 }
                 adapter.notifyDataSetChanged()
                 binding.progressBar.visibility = View.GONE
@@ -54,6 +56,8 @@ class HomeFragment : Fragment() {
         firebaseFirestore = FirebaseFirestore.getInstance()
         binding.recyclerView.setHasFixedSize(true)
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+//        layoutManager.reverseLayout = true
+//        layoutManager.stackFromEnd = true
         adapter = ImagesAdapter(mList)
         binding.recyclerView.adapter = adapter
     }
@@ -61,7 +65,7 @@ class HomeFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        mList.clear()
         _binding = null
+        mList.clear()
     }
 }

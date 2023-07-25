@@ -42,7 +42,6 @@ class PostFragment : Fragment() {
         _binding = FragmentPostBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        storageRef = FirebaseStorage.getInstance().reference.child("Images")
         firebaseFirestore = FirebaseFirestore.getInstance()
 
         initVars()
@@ -62,6 +61,7 @@ class PostFragment : Fragment() {
     }
 
     private fun uploadImage() {
+        storageRef = FirebaseStorage.getInstance().reference.child("Images")
         binding.progressBar.visibility = View.VISIBLE
         storageRef = storageRef.child(System.currentTimeMillis().toString())
         imageUri?.let {
@@ -72,6 +72,7 @@ class PostFragment : Fragment() {
 
                         val map = HashMap<String, Any>()
                         map["pic"] = uri.toString()
+                        map["caption"] = binding.postCaption.text.toString()
 
                         firebaseFirestore.collection("images").add(map)
                             .addOnCompleteListener { firestoreTask ->
@@ -79,7 +80,7 @@ class PostFragment : Fragment() {
                                 if (firestoreTask.isSuccessful) {
                                     Toast.makeText(
                                         requireContext(),
-                                        "Uploaded Successfully",
+                                        "Uploaded successfully",
                                         Toast.LENGTH_SHORT
                                     ).show()
 
