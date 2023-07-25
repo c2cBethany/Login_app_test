@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/recCardForum"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardUseCompatPadding="true">
@@ -10,11 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:background="@drawable/edit_text_border"
         android:gravity="top"
         android:overScrollMode="always"
         android:padding="20dp"
         android:scrollbarStyle="insideInset"
         android:scrollbars="vertical" />
 
-</LinearLayout>
+</androidx.cardview.widget.CardView>

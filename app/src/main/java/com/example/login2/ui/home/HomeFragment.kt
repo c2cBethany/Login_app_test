@@ -5,23 +5,26 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.GridLayoutManager
+import com.example.login2.DataClass
 import com.example.login2.ImagesAdapter
 import com.example.login2.databinding.FragmentHomeBinding
-import com.google.firebase.firestore.FirebaseFirestore
-import java.util.Collections
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
-    private lateinit var firebaseFirestore: FirebaseFirestore
-    private var mList = mutableListOf<String>()
+    var databaseReference: DatabaseReference? = null
+    var eventListener: ValueEventListener? = null
+    private lateinit var dataList: ArrayList<DataClass>
     private lateinit var adapter: ImagesAdapter
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -33,39 +36,42 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        initVars()
-        getImages()
+        val gridLayoutManager = GridLayoutManager(requireContext(), 1)
+        binding.recyclerView.layoutManager = gridLayoutManager
+
+        binding.progressBar.visibility = View.VISIBLE
+        dataList = ArrayList()
+        adapter = ImagesAdapter(requireContext(), dataList)
+        binding.recyclerView.adapter = adapter
+        databaseReference = FirebaseDatabase.getInstance().getReference("Posts")
+        binding.progressBar.visibility = View.GONE
+
+        eventListener = databaseReference!!.addValueEventListener(object : ValueEventListener {
+            @SuppressLint("NotifyDataSetChanged")
+            override fun onDataChange(snapshot: DataSnapshot) {
+                dataList.clear()
+                for (itemSnapshot in snapshot.children) {
+                    val dataClass = itemSnapshot.getValue(DataClass::class.java)
+                    if (dataClass != null) {
+                        dataList.add(dataClass)
+                    }
+                }
+                adapter.notifyDataSetChanged()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(
+                    requireContext(), "Database error", Toast.LENGTH_SHORT
+                ).show()
+            }
+        })
 
         return root
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    private fun getImages(){
-        binding.progressBar.visibility = View.VISIBLE
-        firebaseFirestore.collection("images")
-            .get().addOnSuccessListener {
-                for(i in it){
-                    mList.add((i.data["pic"].toString()) + (i.data["caption"].toString()))
-                }
-                adapter.notifyDataSetChanged()
-                binding.progressBar.visibility = View.GONE
-            }
-    }
-
-    private fun initVars() {
-        firebaseFirestore = FirebaseFirestore.getInstance()
-        binding.recyclerView.setHasFixedSize(true)
-        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
-//        layoutManager.reverseLayout = true
-//        layoutManager.stackFromEnd = true
-        adapter = ImagesAdapter(mList)
-        binding.recyclerView.adapter = adapter
-    }
-
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-        mList.clear()
+        dataList.clear()
     }
 }

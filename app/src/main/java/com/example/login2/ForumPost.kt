@@ -1,17 +1,18 @@
 package com.example.login2
 
-import android.app.Activity
-import android.content.Intent
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import com.example.login2.databinding.ActivityForumPostBinding
-import com.google.firebase.firestore.FieldValue
+import com.example.login2.datasource.DataClassForum
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import java.text.DateFormat
+import java.util.Calendar
 
 class ForumPost : AppCompatActivity() {
 
@@ -26,10 +27,10 @@ class ForumPost : AppCompatActivity() {
         setContentView(binding.root)
 
         firebaseFirestore = FirebaseFirestore.getInstance()
-        storageRef = FirebaseStorage.getInstance().reference.child("forum posts")
 
         binding.uploadButton.setOnClickListener {
-            uploadText()
+            binding.progressBar.visibility = View.VISIBLE
+            uploadData()
         }
 
         binding.backButton.setOnClickListener {
@@ -38,24 +39,22 @@ class ForumPost : AppCompatActivity() {
 
     }
 
-    private fun uploadText() {
-        binding.progressBar.visibility = View.VISIBLE
-        val text = hashMapOf("text post" to binding.postForum.text.toString(),
-            "date" to FieldValue.serverTimestamp())
-        firebaseFirestore.collection("forum posts").add(text)
-            .addOnSuccessListener { Toast.makeText(
-                this,
-                "Uploaded text Successfully",
-                Toast.LENGTH_SHORT
-            ).show() }
-            .addOnFailureListener { Toast.makeText(
-                this,
-                "Uploaded text unsuccessfully",
-                Toast.LENGTH_SHORT
-            ).show() }
-
-        binding.progressBar.visibility = View.GONE
-        binding.postForum.setText("")
-
+    private fun uploadData() {
+        val caption = binding.postForum.text.toString()
+        val dataClassforum = DataClassForum(caption)
+        val currentDate = DateFormat.getDateTimeInstance().format(Calendar.getInstance().time)
+        FirebaseDatabase.getInstance().getReference("ForumPosts").child(currentDate)
+            .setValue(dataClassforum).addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(this, "Uploaded Successfully!", Toast.LENGTH_SHORT)
+                        .show()
+                    binding.postForum.setText("")
+                    binding.progressBar.visibility = View.GONE
+                }
+            }.addOnFailureListener { e ->
+                Toast.makeText(
+                    this, e.message.toString(), Toast.LENGTH_SHORT
+                ).show()
+            }
     }
 }

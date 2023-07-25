@@ -1,24 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/recCard"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     app:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/eachItem"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginHorizontal="15dp"
-        android:layout_marginTop="15dp"
-        android:scaleType="centerCrop" />
+        android:layout_height="180dp"
+        android:scaleType="centerCrop"
+        android:layout_margin="10dp"
+        android:elevation="10dp"/>
 
     <TextView
         android:id="@+id/caption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="sjjss"/>
+        android:layout_marginBottom="10dp"
+        android:layout_marginHorizontal="10dp"
+        android:text="sjjss" />
 
-</LinearLayout>
+        </LinearLayout>
+
+
+
+</androidx.cardview.widget.CardView>

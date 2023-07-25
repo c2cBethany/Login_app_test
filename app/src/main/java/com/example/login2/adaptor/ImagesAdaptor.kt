@@ -1,31 +1,43 @@
 package com.example.login2
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.login2.databinding.EachItemBinding
+import com.bumptech.glide.Glide
 import com.squareup.picasso.Picasso
 
-class ImagesAdapter(private var mList: List<String>) :
-    RecyclerView.Adapter<ImagesAdapter.ImagesViewHolder>() {
+class ImagesAdapter(private val context: Context, private var dataList: List<DataClass>) :
+    RecyclerView.Adapter<MyViewHolder>() {
 
-    inner class ImagesViewHolder(var binding: EachItemBinding) :
-        RecyclerView.ViewHolder(binding.root)
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImagesViewHolder {
-        val binding = EachItemBinding.inflate(LayoutInflater.from(parent.context) , parent , false)
-        return ImagesViewHolder(binding)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.each_item, parent, false)
+        return MyViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ImagesViewHolder, position: Int) {
-        with(holder.binding){
-            with(mList[position]){
-                Picasso.get().load(this).into(eachItem)
-            }
-        }
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        Glide.with(context).load(dataList[position].dataImage)
+            .into(holder.recImage)
+        holder.recDesc.text = dataList[position].dataDesc
     }
 
     override fun getItemCount(): Int {
-        return mList.size
+        return dataList.size
+    }
+}
+
+class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    var recImage: ImageView
+    var recDesc: TextView
+    var recCard: CardView
+    init {
+        recImage = itemView.findViewById(R.id.eachItem)
+        recDesc = itemView.findViewById(R.id.caption)
+        recCard = itemView.findViewById(R.id.recCard)
     }
 }

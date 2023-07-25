@@ -18,7 +18,7 @@
         <ImageView
             android:layout_width="200dp"
             android:layout_height="100dp"
-            android:src="@drawable/code2college"></ImageView>
+            android:src="@drawable/code2college" />
     </LinearLayout>
 
     <LinearLayout
@@ -34,7 +34,8 @@
             android:layout_gravity="center_horizontal"
             android:background="@drawable/edittext"
             android:orientation="vertical"
-            android:padding="24dp">
+            android:padding="24dp"
+            tools:ignore="UselessParent">
 
             <TextView
                 android:id="@+id/loginText"

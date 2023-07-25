@@ -5,23 +5,25 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.login2.DiscussionsAdaptor
 import com.example.login2.databinding.FragmentForumBinding
-import com.google.firebase.firestore.FirebaseFirestore
+import com.example.login2.datasource.DataClassForum
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class ForumFragment : Fragment() {
 
     private var _binding: FragmentForumBinding? = null
-    private lateinit var firebaseFirestore: FirebaseFirestore
-    private var mList = mutableListOf<String>()
+    var databaseReference: DatabaseReference? = null
+    var eventListener: ValueEventListener? = null
+    private lateinit var dataList: ArrayList<DataClassForum>
     private lateinit var adapter: DiscussionsAdaptor
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -29,50 +31,46 @@ class ForumFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-//        val forumViewModel =
-//            ViewModelProvider(this).get(ForumViewModel::class.java)
 
         _binding = FragmentForumBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-//        val textView: TextView = binding.textForum
-//        forumViewModel.text.observe(viewLifecycleOwner) {
-//            textView.text = it
-//        }
+        val gridLayoutManager = GridLayoutManager(requireContext(), 1)
+        binding.recyclerView.layoutManager = gridLayoutManager
 
-        initVars()
-        getText()
+        binding.progressBar.visibility = View.VISIBLE
+        dataList = ArrayList()
+        adapter = DiscussionsAdaptor(requireContext(), dataList)
+        binding.recyclerView.adapter = adapter
+        databaseReference = FirebaseDatabase.getInstance().getReference("ForumPosts")
+        binding.progressBar.visibility = View.GONE
+
+        eventListener = databaseReference!!.addValueEventListener(object : ValueEventListener {
+            @SuppressLint("NotifyDataSetChanged")
+            override fun onDataChange(snapshot: DataSnapshot) {
+                dataList.clear()
+                for (itemSnapshot in snapshot.children) {
+                    val dataClass = itemSnapshot.getValue(DataClassForum::class.java)
+                    if (dataClass != null) {
+                        dataList.add(dataClass)
+                    }
+                }
+                adapter.notifyDataSetChanged()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(
+                    requireContext(), "Database error", Toast.LENGTH_SHORT
+                ).show()
+            }
+        })
 
         return root
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    private fun getText() {
-        binding.progressBar.visibility = View.VISIBLE
-        firebaseFirestore.collection("forum posts")
-            .get().addOnSuccessListener {
-                for (i in it) {
-                    val dataForum = i.data["text post"].toString()
-                    val dataDate = i.data["date"].toString()
-                    mList.add(dataForum + dataDate)
-                }
-                adapter.notifyDataSetChanged()
-                binding.progressBar.visibility = View.GONE
-            }
-    }
-
-    private fun initVars() {
-        firebaseFirestore = FirebaseFirestore.getInstance()
-        binding.recyclerView.setHasFixedSize(true)
-        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        adapter = DiscussionsAdaptor(mList)
-        binding.recyclerView.adapter = adapter
-    }
-
-
     override fun onDestroyView() {
         super.onDestroyView()
-        mList.clear()
         _binding = null
+        dataList.clear()
     }
 }
