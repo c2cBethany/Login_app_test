@@ -42,9 +42,9 @@ class StudentView : AppCompatActivity() {
 
         setSupportActionBar(binding.appBarMain2.toolbar2)
 
-        binding.appBarMain2.fab2.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+        binding.appBarMain2.fab2.setOnClickListener {
+            val intent = Intent(this, ForumPost::class.java)
+            startActivity(intent)
         }
         val navView: NavigationView = binding.navView2
         val drawerLayout: DrawerLayout = binding.drawerLayout2

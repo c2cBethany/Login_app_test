@@ -12,42 +12,52 @@
         android:id="@+id/welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:text="Welcome," />
+        android:text="Welcome,"
+        android:textSize="20dp" />
 
     <TextView
         android:id="@+id/userEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
         android:text="user email"
         android:textAlignment="center"
         android:textSize="34sp" />
+
     <TextView
         android:id="@+id/fullName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:text="user"
         android:textAlignment="center"
         android:textSize="34sp" />
 
     <EditText
         android:id="@+id/firstNameInput"
-        android:layout_width="300dp"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@drawable/edittext"
         android:hint="@string/firstname"
+        android:padding="15dp"
         android:textSize="20sp" />
+
     <EditText
         android:id="@+id/lastNameInput"
-        android:layout_width="300dp"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@drawable/edittext"
         android:hint="@string/lastname"
+        android:padding="15dp"
         android:textSize="20sp" />
 
     <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginHorizontal="50dp">
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginTop="10dp">
 
         <RadioButton
             android:id="@+id/teacher"
@@ -68,10 +78,9 @@
         android:id="@+id/saveButton"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="SAVE"
         android:layout_margin="15dp"
         android:backgroundTint="@color/blue"
-        />
+        android:text="SAVE" />
 
 
 </LinearLayout>

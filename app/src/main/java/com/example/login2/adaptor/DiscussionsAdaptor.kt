@@ -21,6 +21,7 @@ class DiscussionsAdaptor(private val context: Context, private var dataList: Lis
 
     override fun onBindViewHolder(holder: MyViewHolder2, position: Int) {
         holder.recDesc.text = dataList[position].dataDesc
+        holder.userID.text = dataList[position].userID
     }
 
     override fun getItemCount(): Int {
@@ -30,9 +31,11 @@ class DiscussionsAdaptor(private val context: Context, private var dataList: Lis
 
 class MyViewHolder2(itemView: View) : RecyclerView.ViewHolder(itemView) {
     var recDesc: TextView
+    var userID: TextView
     var recCard: CardView
     init {
         recDesc = itemView.findViewById(R.id.eachText)
+        userID = itemView.findViewById(R.id.userPost)
         recCard = itemView.findViewById(R.id.recCardForum)
     }
 }

@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.login2.DiscussionsAdaptor
 import com.example.login2.databinding.FragmentForumBinding
 import com.example.login2.datasource.DataClassForum
+import com.example.login2.datasource.User
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -20,7 +22,7 @@ import com.google.firebase.database.ValueEventListener
 class ForumFragment : Fragment() {
 
     private var _binding: FragmentForumBinding? = null
-    var databaseReference: DatabaseReference? = null
+    var databaseReferencePosts: DatabaseReference? = null
     var eventListener: ValueEventListener? = null
     private lateinit var dataList: ArrayList<DataClassForum>
     private lateinit var adapter: DiscussionsAdaptor
@@ -42,10 +44,10 @@ class ForumFragment : Fragment() {
         dataList = ArrayList()
         adapter = DiscussionsAdaptor(requireContext(), dataList)
         binding.recyclerView.adapter = adapter
-        databaseReference = FirebaseDatabase.getInstance().getReference("ForumPosts")
+        databaseReferencePosts = FirebaseDatabase.getInstance().getReference("ForumPosts")
         binding.progressBar.visibility = View.GONE
 
-        eventListener = databaseReference!!.addValueEventListener(object : ValueEventListener {
+        eventListener = databaseReferencePosts!!.addValueEventListener(object : ValueEventListener {
             @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(snapshot: DataSnapshot) {
                 dataList.clear()
