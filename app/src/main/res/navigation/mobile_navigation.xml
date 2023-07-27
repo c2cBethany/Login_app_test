@@ -29,5 +29,10 @@
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
+    <activity
+        android:id="@+id/nav_logout"
+        android:name="com.example.login2.LogIn"
+        android:label="@string/menu_logout"
+        tools:layout="@layout/login" />
 
 </navigation>

@@ -12,15 +12,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="5dp"
+        android:layout_marginTop="30dp"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:background="@drawable/edittext"
             android:orientation="vertical"
-            android:padding="24dp">
+            android:paddingHorizontal="24dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -41,7 +41,6 @@
                 app:boxStrokeColor="@color/blue"
                 app:boxStrokeWidth="2dp"
                 app:hintTextColor="@color/blue"
-
                 app:startIconTint="@color/blue">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -160,8 +159,9 @@
             </RadioGroup>
 
             <Button
+                android:layout_marginTop="20dp"
                 android:id="@+id/reg_button"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/darkblue"
                 android:text="@string/register"
@@ -172,13 +172,14 @@
     </LinearLayout>
 
     <TableRow
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp">
+        android:layout_margin="5dp"
+        android:paddingHorizontal="25dp">
 
         <Button
             android:id="@+id/backLogin"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/blue"
             android:text="@string/backtologin" />

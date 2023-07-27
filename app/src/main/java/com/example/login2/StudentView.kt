@@ -87,7 +87,7 @@ class StudentView : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_profile2, R.id.nav_forum2, R.id.nav_home2
+                R.id.nav_profile2, R.id.nav_forum2, R.id.nav_home2, R.id.nav_logout2
             ), drawerLayout
         )
 
@@ -106,13 +106,6 @@ class StudentView : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main2)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
-    }
-
-    fun logOut2(item: MenuItem) {
-        firebaseAuth.signOut()
-        val intent = Intent(this, LogIn::class.java)
-        startActivity(intent)
-        finish()
     }
 
 }
