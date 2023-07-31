@@ -9,13 +9,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.view.isGone
-import androidx.core.view.isInvisible
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.example.login2.DataClass
 import com.example.login2.databinding.FragmentPostBinding
+import com.example.login2.datasource.User
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import java.text.DateFormat
 import java.util.Calendar
@@ -25,6 +28,9 @@ class PostFragment : Fragment() {
     private var _binding: FragmentPostBinding? = null
     var imageURL: String? = null
     var uri: Uri? = null
+    private lateinit var user: User
+    private lateinit var databaseReference: DatabaseReference
+    private lateinit var firebaseAuth: FirebaseAuth
 
     private val binding get() = _binding!!
 
@@ -71,8 +77,7 @@ class PostFragment : Fragment() {
             val urlImage = uriTask.result
             imageURL = urlImage.toString()
             uploadData()
-        }.addOnFailureListener {
-                e ->
+        }.addOnFailureListener { e ->
             Toast.makeText(
                 requireContext(), e.message.toString(), Toast.LENGTH_SHORT
             ).show()
@@ -81,20 +86,42 @@ class PostFragment : Fragment() {
 
     private fun uploadData() {
         val caption = binding.postCaption.text.toString()
-        val dataClass = DataClass(caption, imageURL)
+        firebaseAuth = FirebaseAuth.getInstance()
+        databaseReference = FirebaseDatabase.getInstance().getReference("Users")
+        val userId = firebaseAuth.currentUser?.uid
         val currentDate = DateFormat.getDateTimeInstance().format(Calendar.getInstance().time)
-        FirebaseDatabase.getInstance().getReference("Posts").child(currentDate)
-            .setValue(dataClass).addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    Toast.makeText(requireContext(), "Uploaded Successfully!", Toast.LENGTH_SHORT).show()
-                    binding.postCaption.setText("")
-                    binding.progressBar.visibility = View.GONE
+
+        if (userId.toString().isNotEmpty()) {
+            databaseReference.child(userId.toString()).addValueEventListener(object :
+                ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    user = snapshot.getValue(User::class.java)!!
+                    val dataClass = DataClass(caption, user.firstName + " " + user.lastName, imageURL)
+                    FirebaseDatabase.getInstance().getReference("Posts").child(currentDate)
+                        .setValue(dataClass).addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                Toast.makeText(requireContext(), "Uploaded Successfully!", Toast.LENGTH_SHORT)
+                                    .show()
+                                binding.postCaption.setText("")
+                                binding.progressBar.visibility = View.GONE
+                            }
+                        }.addOnFailureListener { e ->
+                            Toast.makeText(
+                                requireContext(), e.message.toString(), Toast.LENGTH_SHORT
+                            ).show()
+                        }
                 }
-            }.addOnFailureListener { e ->
-                Toast.makeText(
-                    requireContext(), e.message.toString(), Toast.LENGTH_SHORT
-                ).show()
-            }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(
+                        requireContext(),
+                        "Failed!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+            })
+        }
     }
 
     override fun onDestroyView() {

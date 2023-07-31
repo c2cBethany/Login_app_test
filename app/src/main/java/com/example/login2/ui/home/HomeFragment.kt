@@ -53,7 +53,7 @@ class HomeFragment : Fragment() {
                 for (itemSnapshot in snapshot.children) {
                     val dataClass = itemSnapshot.getValue(DataClass::class.java)
                     if (dataClass != null) {
-                        dataList.add(dataClass)
+                        dataList.add(0, dataClass)
                     }
                 }
                 adapter.notifyDataSetChanged()

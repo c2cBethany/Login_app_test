@@ -24,6 +24,7 @@ class ImagesAdapter(private val context: Context, private var dataList: List<Dat
         Glide.with(context).load(dataList[position].dataImage)
             .into(holder.recImage)
         holder.recDesc.text = dataList[position].dataDesc
+        holder.postUser.text = dataList[position].dataUser
     }
 
     override fun getItemCount(): Int {
@@ -34,10 +35,12 @@ class ImagesAdapter(private val context: Context, private var dataList: List<Dat
 class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     var recImage: ImageView
     var recDesc: TextView
+    var postUser: TextView
     var recCard: CardView
     init {
         recImage = itemView.findViewById(R.id.eachItem)
         recDesc = itemView.findViewById(R.id.caption)
+        postUser = itemView.findViewById(R.id.postUsername)
         recCard = itemView.findViewById(R.id.recCard)
     }
 }

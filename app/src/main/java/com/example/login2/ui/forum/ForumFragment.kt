@@ -11,8 +11,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.login2.DiscussionsAdaptor
 import com.example.login2.databinding.FragmentForumBinding
 import com.example.login2.datasource.DataClassForum
-import com.example.login2.datasource.User
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -54,7 +52,7 @@ class ForumFragment : Fragment() {
                 for (itemSnapshot in snapshot.children) {
                     val dataClass = itemSnapshot.getValue(DataClassForum::class.java)
                     if (dataClass != null) {
-                        dataList.add(dataClass)
+                        dataList.add(0, dataClass)
                     }
                 }
                 adapter.notifyDataSetChanged()
