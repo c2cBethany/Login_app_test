@@ -1,189 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
+    android:layout_height="wrap_content"
+    android:fillViewport="true"
     tools:context=".SignUp">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="5dp"
-        android:layout_marginTop="30dp"
-        android:orientation="vertical">
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_margin="30dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:paddingHorizontal="24dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/signup"
-                android:textAlignment="center"
-                android:textColor="@color/darkblue"
-                android:textSize="36sp"
-                android:textStyle="bold" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/OutlinedRoundedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:autofillHints="firstname"
-                android:hint="@string/firstname"
-                app:boxStrokeColor="@color/blue"
-                app:boxStrokeWidth="2dp"
-                app:hintTextColor="@color/blue"
-                app:startIconTint="@color/blue">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/firstname"
+                <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:inputType="textPersonName" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/OutlinedRoundedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:autofillHints="emailAddress"
-                android:hint="@string/lastname"
-                app:boxStrokeColor="@color/blue"
-                app:boxStrokeWidth="2dp"
-                app:hintTextColor="@color/blue"
-                app:startIconTint="@color/blue">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/lastname"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:inputType="textPersonName" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/OutlinedRoundedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:autofillHints="emailAddress"
-                android:hint="@string/user"
-                app:boxStrokeColor="@color/blue"
-                app:boxStrokeWidth="2dp"
-                app:hintTextColor="@color/blue"
-                app:startIconDrawable="@drawable/baseline_person_24"
-                app:startIconTint="@color/blue">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/signupUser"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:inputType="textEmailAddress" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/OutlinedRoundedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:autofillHints="password"
-                android:hint="@string/pass"
-                app:boxStrokeColor="@color/blue"
-                app:boxStrokeWidth="2dp"
-                app:hintTextColor="@color/blue"
-                app:passwordToggleEnabled="true"
-                app:passwordToggleTint="@color/blue"
-                app:startIconDrawable="@drawable/baseline_lock_24"
-                app:startIconTint="@color/blue">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/signupPass"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:inputType="textPassword" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/OutlinedRoundedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:autofillHints="password"
-                android:hint="@string/confpass"
-                app:boxStrokeColor="@color/blue"
-                app:boxStrokeWidth="2dp"
-                app:hintTextColor="@color/blue"
-                app:passwordToggleEnabled="true"
-                app:passwordToggleTint="@color/blue"
-                app:startIconTint="@color/blue">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/confPass"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:inputType="textPassword" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <RadioGroup
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp">
-
-                <RadioButton
-                    android:id="@+id/teacher"
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Teacher" />
+                    android:text="@string/signup"
+                    android:textAlignment="center"
+                    android:textColor="@color/darkblue"
+                    android:textSize="36sp"
+                    android:textStyle="bold" />
 
-                <RadioButton
-                    android:id="@+id/student"
-                    android:layout_width="wrap_content"
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/OutlinedRoundedBox"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:checked="true"
-                    android:text="Student" />
+                    android:layout_marginTop="15dp"
+                    android:autofillHints="firstname"
+                    android:hint="@string/firstname"
+                    app:boxStrokeColor="@color/blue"
+                    app:boxStrokeWidth="2dp"
+                    app:hintTextColor="@color/blue"
+                    app:startIconTint="@color/blue">
 
-            </RadioGroup>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/firstname"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="textPersonName" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/OutlinedRoundedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:autofillHints="emailAddress"
+                    android:hint="@string/lastname"
+                    app:boxStrokeColor="@color/blue"
+                    app:boxStrokeWidth="2dp"
+                    app:hintTextColor="@color/blue"
+                    app:startIconTint="@color/blue">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/lastname"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="textPersonName" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/OutlinedRoundedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:autofillHints="emailAddress"
+                    android:hint="@string/user"
+                    app:boxStrokeColor="@color/blue"
+                    app:boxStrokeWidth="2dp"
+                    app:hintTextColor="@color/blue"
+                    app:startIconDrawable="@drawable/baseline_person_24"
+                    app:startIconTint="@color/blue">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/signupUser"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="textEmailAddress" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/OutlinedRoundedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:autofillHints="password"
+                    android:hint="@string/pass"
+                    app:boxStrokeColor="@color/blue"
+                    app:boxStrokeWidth="2dp"
+                    app:hintTextColor="@color/blue"
+                    app:passwordToggleEnabled="true"
+                    app:passwordToggleTint="@color/blue"
+                    app:startIconDrawable="@drawable/baseline_lock_24"
+                    app:startIconTint="@color/blue">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/signupPass"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="textPassword" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/OutlinedRoundedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:autofillHints="password"
+                    android:hint="@string/confirmpass"
+                    app:boxStrokeColor="@color/blue"
+                    app:boxStrokeWidth="2dp"
+                    app:hintTextColor="@color/blue"
+                    app:passwordToggleEnabled="true"
+                    app:passwordToggleTint="@color/blue"
+                    app:startIconTint="@color/blue">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/confPass"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="textPassword" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp">
+
+                    <RadioButton
+                        android:id="@+id/teacher"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/teacher" />
+
+                    <RadioButton
+                        android:id="@+id/student"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="@string/student" />
+
+                </RadioGroup>
+
+                <Button
+                    android:id="@+id/reg_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:backgroundTint="@color/darkblue"
+                    android:text="@string/register"
+                    app:cornerRadius="20dp" />
 
             <Button
-                android:layout_marginTop="20dp"
-                android:id="@+id/reg_button"
+                android:id="@+id/backLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/darkblue"
-                android:text="@string/register"
-                app:cornerRadius="20dp" />
+                android:backgroundTint="@color/blue"
+                android:text="@string/backtologin" />
 
         </LinearLayout>
 
-    </LinearLayout>
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:paddingHorizontal="25dp">
-
-        <Button
-            android:id="@+id/backLogin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/blue"
-            android:text="@string/backtologin" />
-    </TableRow>
-
-
-</LinearLayout>
+</androidx.core.widget.NestedScrollView>

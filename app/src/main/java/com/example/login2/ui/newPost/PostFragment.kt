@@ -27,7 +27,7 @@ class PostFragment : Fragment() {
 
     private var _binding: FragmentPostBinding? = null
     var imageURL: String? = null
-    var uri: Uri? = null
+    private var uri: Uri? = null
     private lateinit var user: User
     private lateinit var databaseReference: DatabaseReference
     private lateinit var firebaseAuth: FirebaseAuth

@@ -1,7 +1,6 @@
-package com.example.login2
+package com.example.login2.adaptor
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,8 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.squareup.picasso.Picasso
+import com.example.login2.DataClass
+import com.example.login2.R
 
 class ImagesAdapter(private val context: Context, private var dataList: List<DataClass>) :
     RecyclerView.Adapter<MyViewHolder>() {

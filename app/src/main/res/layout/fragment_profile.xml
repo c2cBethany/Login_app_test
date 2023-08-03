@@ -12,15 +12,15 @@
         android:id="@+id/welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome,"
-        android:textSize="20dp" />
+        android:text="@string/welcome"
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/userEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:text="user email"
+        android:text="@string/user"
         android:textAlignment="center"
         android:textSize="34sp" />
 
@@ -29,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:text="user"
+        android:text="@string/namePlaceholder"
         android:textAlignment="center"
         android:textSize="34sp" />
 
@@ -41,7 +41,9 @@
         android:background="@drawable/edittext"
         android:hint="@string/firstname"
         android:padding="15dp"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:autofillHints="name"
+        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/lastNameInput"
@@ -51,7 +53,9 @@
         android:background="@drawable/edittext"
         android:hint="@string/lastname"
         android:padding="15dp"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:autofillHints="name"
+        android:inputType="textPersonName" />
 
     <RadioGroup
         android:layout_width="match_parent"
@@ -63,14 +67,14 @@
             android:id="@+id/teacher"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Teacher" />
+            android:text="@string/teacher" />
 
         <RadioButton
             android:id="@+id/student"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
-            android:text="Student" />
+            android:text="@string/student" />
 
     </RadioGroup>
 
@@ -80,7 +84,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:backgroundTint="@color/blue"
-        android:text="SAVE" />
+        android:text="@string/save" />
 
 
 </LinearLayout>

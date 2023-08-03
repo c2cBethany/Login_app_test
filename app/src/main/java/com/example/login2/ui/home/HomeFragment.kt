@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.login2.DataClass
-import com.example.login2.ImagesAdapter
+import com.example.login2.adaptor.ImagesAdapter
 import com.example.login2.databinding.FragmentHomeBinding
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -20,8 +20,8 @@ import com.google.firebase.database.ValueEventListener
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
-    var databaseReference: DatabaseReference? = null
-    var eventListener: ValueEventListener? = null
+    private var databaseReference: DatabaseReference? = null
+    private var eventListener: ValueEventListener? = null
     private lateinit var dataList: ArrayList<DataClass>
     private lateinit var adapter: ImagesAdapter
 

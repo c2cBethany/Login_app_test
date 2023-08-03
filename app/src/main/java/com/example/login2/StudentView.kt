@@ -1,9 +1,9 @@
 package com.example.login2
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
@@ -17,7 +17,6 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.login2.databinding.StudentViewBinding
 import com.example.login2.datasource.User
 import com.google.android.material.navigation.NavigationView
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -66,6 +65,7 @@ class StudentView : AppCompatActivity() {
         if (userId.toString().isNotEmpty()) {
             databaseReference.child(userId.toString()).addValueEventListener(object :
                 ValueEventListener {
+                @SuppressLint("SetTextI18n")
                 override fun onDataChange(snapshot: DataSnapshot) {
                     user = snapshot.getValue(User::class.java)!!
                     headerFullName.text = user.firstName + " " + user.lastName

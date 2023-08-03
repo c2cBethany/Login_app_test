@@ -1,5 +1,6 @@
 package com.example.login2.ui.profile
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +15,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-
 
 class ProfileFragment : Fragment() {
 
@@ -61,6 +61,7 @@ class ProfileFragment : Fragment() {
                 val user = User(firstName, lastName, status)
                 if (userId != null) {
                     databaseReference.child(userId).setValue(user).addOnCompleteListener {
+                        activity?.finish()
                         Toast.makeText(requireContext(), "Success!", Toast.LENGTH_SHORT).show()
                     }
                         .addOnFailureListener {
@@ -76,23 +77,26 @@ class ProfileFragment : Fragment() {
             }
         }
 
-        //displays first name, lastname, and status in myprofile
+        //displays first name, lastname, and status in my profile
         if (userId.toString().isNotEmpty()) {
-            databaseReference.child(userId.toString()).addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    user = snapshot.getValue(User::class.java)!!
-                    binding.fullName.text = user.firstName + " " + user.lastName + " " + user.status
-                }
+            databaseReference.child(userId.toString())
+                .addValueEventListener(object : ValueEventListener {
+                    @SuppressLint("SetTextI18n")
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        user = snapshot.getValue(User::class.java)!!
+                        binding.fullName.text =
+                            user.firstName + " " + user.lastName + " " + user.status
+                    }
 
-                override fun onCancelled(error: DatabaseError) {
-                    Toast.makeText(
-                        requireContext(),
-                        "Failed!",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
+                    override fun onCancelled(error: DatabaseError) {
+                        Toast.makeText(
+                            requireContext(),
+                            "Failed!",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
 
-            })
+                })
         }
 
         return root

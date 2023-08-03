@@ -23,18 +23,22 @@
     <string name="menu_logout">Log out</string>
     <string name="namePlaceholder">Name Not Entered</string>
 
-    <string name="affirmation1">I am strong.</string>
-    <string name="affirmation2">I believe in myself.</string>
-    <string name="affirmation3">Each day is a new opportunity to grow and be a better version of myself.</string>
-    <string name="affirmation4">Every challenge in my life is an opportunity to learn from.</string>
-    <string name="affirmation5">I have so much to be grateful for.</string>
-    <string name="affirmation6">Good things are always coming into my life.</string>
-    <string name="affirmation7">New opportunities await me at every turn.</string>
-    <string name="affirmation8">I have the courage to follow my heart.</string>
-    <string name="affirmation9">Things will unfold at precisely the right time.</string>
-    <string name="affirmation10">I will be present in all the moments that this day brings.</string>
     <string name="title_activity_main4">MainActivity4</string>
     <string name="firstname">Name</string>
     <string name="lastname">Last Name</string>
-    <string name="confpass">Confirm Password</string>
+    <string name="type_here">Type here</string>
+    <string name="back_button">Back Button</string>
+    <string name="code_to_college_logo">Code To College Logo</string>
+    <string name="upload">UPLOAD</string>
+    <string name="username">Username</string>
+    <string name="caption">Caption</string>
+    <string name="post_image">Post Image</string>
+    <string name="post">post</string>
+    <string name="welcome">Welcome,</string>
+    <string name="teacher">Teacher</string>
+    <string name="student">Student</string>
+    <string name="save">SAVE</string>
+    <string name="login_button">Login Button</string>
+    <string name="select">SELECT</string>
+    <string name="status">Status</string>
 </resources>

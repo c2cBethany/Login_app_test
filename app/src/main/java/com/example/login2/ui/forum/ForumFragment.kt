@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.login2.DiscussionsAdaptor
+import com.example.login2.adaptor.DiscussionsAdaptor
 import com.example.login2.databinding.FragmentForumBinding
 import com.example.login2.datasource.DataClassForum
 import com.google.firebase.database.DataSnapshot
@@ -20,8 +20,8 @@ import com.google.firebase.database.ValueEventListener
 class ForumFragment : Fragment() {
 
     private var _binding: FragmentForumBinding? = null
-    var databaseReferencePosts: DatabaseReference? = null
-    var eventListener: ValueEventListener? = null
+    private var databaseReferencePosts: DatabaseReference? = null
+    private var eventListener: ValueEventListener? = null
     private lateinit var dataList: ArrayList<DataClassForum>
     private lateinit var adapter: DiscussionsAdaptor
     private val binding get() = _binding!!

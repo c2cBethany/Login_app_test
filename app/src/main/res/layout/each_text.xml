@@ -17,12 +17,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:gravity="top"
             android:overScrollMode="always"
             android:scrollbarStyle="insideInset"
             android:scrollbars="vertical"
-            android:text="username" />
+            android:text="@string/username" />
 
         <View
             android:layout_marginHorizontal="5dp"
@@ -40,7 +40,7 @@
             android:overScrollMode="always"
             android:scrollbarStyle="insideInset"
             android:scrollbars="vertical"
-            android:text="post" />
+            android:text="@string/post" />
 
     </LinearLayout>
 

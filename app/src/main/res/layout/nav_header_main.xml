@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/nav_header_height"
     android:background="@drawable/side_nav_bar"
     android:gravity="bottom"
     android:orientation="vertical"
-    android:paddingLeft="10dp"
+    android:paddingStart="10dp"
     android:paddingBottom="10dp"
-    android:backgroundTint="@color/blue">
+    android:backgroundTint="@color/blue"
+    tools:ignore="RtlSymmetry">
 
     <ImageView
         android:id="@+id/profilePicture"
@@ -33,7 +35,7 @@
         android:id="@+id/headerStatus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Status"
+        android:text="@string/status"
         android:textColor="@color/darkblue"/>
 
 
@@ -41,7 +43,7 @@
         android:id="@+id/emailHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Email"
+        android:text="@string/user"
         android:textColor="@color/darkblue"
         />
 </LinearLayout>

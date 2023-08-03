@@ -3,7 +3,6 @@ package com.example.login2
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import com.example.login2.databinding.SignupBinding
 import com.example.login2.datasource.User
